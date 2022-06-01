@@ -81,12 +81,14 @@ func TestMMU_load(t *testing.T) {
 	type args struct {
 		path string
 	}
+	mmu := MMU{inbios: true}
+
 	tests := []struct {
 		name string
 		mmu  *MMU
 		args args
 	}{
-		// TODO: Add test cases.
+		{"MMU: Test load ROM", &mmu, args{"./tetris.gb"}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

@@ -1,6 +1,9 @@
 package main
 
-import "os"
+import (
+	"fmt"
+	"os"
+)
 
 type MMU struct {
 	inbios bool // Flag indicating BIOS is mapped in, BIOS is unmapped with the first instruction above 0x00FF
@@ -64,4 +67,10 @@ func (mmu *MMU) load(path string) {
 	}
 
 	copy(mmu.rom[:], dat)
+
+	title := string(mmu.rom[0x0134:0x143])
+	fmt.Printf("===== Loaded ROM =====\n")
+	fmt.Printf("Title: %s\n", title)
+	fmt.Printf("Size: %d bytes\n", len(dat))
+	fmt.Printf("======================\n\n")
 }
